@@ -1,1 +1,31 @@
-<p>booking works!</p>
+<section class="booking">
+  <h1>Foglalás</h1>
+
+  <form (ngSubmit)="submitBooking()" #bookingForm="ngForm">
+    <div class="form-group">
+      <label>Érkezés</label>
+      <input type="date" [(ngModel)]="booking.checkin" name="checkin" required />
+    </div>
+
+    <div class="form-group">
+      <label>Távozás</label>
+      <input type="date" [(ngModel)]="booking.checkout" name="checkout" required />
+    </div>
+
+    <div class="form-group">
+      <label>Vendégek száma</label>
+      <input type="number" [(ngModel)]="booking.guests" name="guests" min="1" max="10" required />
+    </div>
+
+    <div class="form-group">
+      <label>Szobatípus</label>
+      <select [(ngModel)]="booking.roomType" name="roomType">
+        <option *ngFor="let room of rooms" [value]="room.name">{{ room.name }}</option>
+      </select>
+    </div>
+
+    <p class="total">Összesen: <strong>{{ totalPrice | number }} Ft</strong></p>
+
+    <button type="submit" class="btn-submit">Foglalás</button>
+  </form>
+</section>

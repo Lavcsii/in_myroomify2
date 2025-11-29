@@ -1,23 +1,42 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, DecimalPipe } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-import { RoomsComponent } from './rooms.component';
+@Component({
+  selector: 'app-rooms',
+  standalone: true,
+  imports: [CommonModule, HttpClientModule, DecimalPipe],
+  templateUrl: './rooms.component.html',
+  styleUrls: ['./rooms.component.css']
+})
+export class RoomsComponent implements OnInit {
 
-describe('RoomsComponent', () => {
-  let component: RoomsComponent;
-  let fixture: ComponentFixture<RoomsComponent>;
+  rooms: any[] = [];
+  selectedRoom: any = null;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [RoomsComponent]
-    })
-    .compileComponents();
+  constructor(private http: HttpClient) {}
 
-    fixture = TestBed.createComponent(RoomsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  ngOnInit(): void {
+    this.loadRooms();
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  loadRooms(): void {
+    this.http.get<any[]>('/api/rooms').subscribe({
+      next: data => this.rooms = data,
+      error: err => console.error('Hiba a szobák betöltésekor:', err)
+    });
+  }
+
+  selectRoom(room: any): void {
+    this.selectedRoom = room;
+  }
+
+  getStatusColor(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'available': return 'green';
+      case 'booked': return 'red';
+      case 'maintenance': return 'orange';
+      default: return 'gray';
+    }
+  }
+}

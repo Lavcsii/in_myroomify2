@@ -1,0 +1,4 @@
+.room-card.available { border-color: green; }
+.room-card.booked { border-color: red; }
+.room-card.inactive { border-color: gray; }
+.room-card.maintenance { border-color: orange; }

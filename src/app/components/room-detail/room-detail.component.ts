@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-room-detail',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './room-detail.component.html',
-  styleUrl: './room-detail.component.css'
+  styleUrls: ['./room-detail.component.css']
 })
 export class RoomDetailComponent {
-
+  @Input() room: any;
 }

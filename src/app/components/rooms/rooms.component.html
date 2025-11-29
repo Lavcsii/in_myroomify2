@@ -1,1 +1,29 @@
-<p>rooms works!</p>
+<h2>Szobák</h2>
+
+<div class="room-list">
+  <div 
+    class="room-card" 
+    *ngFor="let room of rooms" 
+    [style.border-color]="getStatusColor(room.status)"
+    (click)="selectRoom(room)">
+    
+    <h3>{{ room.name }} ({{ room.type }})</h3>
+    <p>Szobaszám: {{ room.room_number }}</p>
+    <p>Ár/éj: {{ room.price_per_night | number:'1.0-2' }} Ft</p>
+    <p>Kapacitás: {{ room.capacity }} fő</p>
+    <p>Status: {{ room.status }}</p>
+  </div>
+</div>
+
+<div *ngIf="selectedRoom" class="room-details">
+  <h2>Szoba részletei</h2>
+
+  <h3>{{ selectedRoom.name }} ({{ selectedRoom.type }})</h3>
+  <p>{{ selectedRoom.description }}</p>
+  <p>Szobaszám: {{ selectedRoom.room_number }}</p>
+  <p>Ár/éj: {{ selectedRoom.price_per_night | number:'1.0-2' }} Ft</p>
+  <p>Kapacitás: {{ selectedRoom.capacity }} fő</p>
+  <p>Status: {{ selectedRoom.status }}</p>
+
+  <button (click)="selectedRoom = null">Bezár</button>
+</div>

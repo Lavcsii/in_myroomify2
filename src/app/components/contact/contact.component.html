@@ -1,1 +1,27 @@
-<p>contact works!</p>
+<section class="contact">
+  <h1>Kapcsolat</h1>
+
+  <div class="contact-cards">
+    <!-- Kapcsolati adatok -->
+    <div class="card">
+      <h3>Elérhetőség</h3>
+      <p><strong>Cím:</strong> 1234 Budapest, Példa utca 1.</p>
+      <p><strong>Telefon:</strong> +36 30 123 4567</p>
+      <p><strong>Email:</strong> info@szalloda.hu</p>
+    </div>
+
+    <!-- Üzenetküldő form -->
+    <div class="card">
+      <h3>Írj nekünk</h3>
+      <form (ngSubmit)="sendMessage()" #contactForm="ngForm" class="contact-form">
+        <div class="form-group">
+          <input type="text" [(ngModel)]="contact.name" name="name" placeholder="Név" required />
+        </div>
+        <div class="form-group">
+          <input type="email" [(ngModel)]="contact.email" name="email" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+          <textarea [(ngModel)]="contact.message" name="message" placeholder="Üzenet" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Küldés</button>
+      </form>

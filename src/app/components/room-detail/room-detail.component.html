@@ -1,1 +1,14 @@
-<p>room-detail works!</p>
+<h2>Szoba részletei</h2>
+
+<div *ngIf="room">
+  <h3>{{ room.name }} ({{ room.type }})</h3>
+  <p>{{ room.description }}</p>
+  <p>Szobaszám: {{ room.room_number }}</p>
+  <p>Ár/éj: {{ room.price_per_night | number:'1.0-2' }} Ft</p>
+  <p>Kapacitás: {{ room.capacity }} fő</p>
+  <p>Státusz: {{ room.status }}</p>
+</div>
+
+<div *ngIf="!room">
+  <p>Betöltés...</p>
+</div>

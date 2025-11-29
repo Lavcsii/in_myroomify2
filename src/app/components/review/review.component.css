@@ -1,0 +1,25 @@
+.review-form {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.review-form label {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.review-form input,
+.review-form textarea,
+.review-form select {
+  width: 100%;
+  padding: 0.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-form button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}

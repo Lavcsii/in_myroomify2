@@ -1,1 +1,32 @@
-<p>review works!</p>
+<section class="reviews">
+  <h1>Vendégértékelések</h1>
+
+  <div class="review-list">
+    <div class="review-card" *ngFor="let review of reviews">
+      <h3>{{ review.name }} <span class="stars">{{ getStars(review.rating) }}</span></h3>
+      <p class="date">{{ review.date | date:'yyyy.MM.dd' }}</p>
+      <p class="comment">{{ review.comment }}</p>
+    </div>
+  </div>
+
+  <div class="review-form">
+    <h2>Írj véleményt</h2>
+    <form (ngSubmit)="addReview()" #reviewForm="ngForm">
+      <div class="form-group">
+        <label>Név</label>
+        <input type="text" [(ngModel)]="newReview.name" name="name" required />
+      </div>
+      <div class="form-group">
+        <label>Értékelés</label>
+        <select [(ngModel)]="newReview.rating" name="rating">
+          <option *ngFor="let r of [5,4,3,2,1]" [value]="r">{{ r }} csillag</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Vélemény</label>
+        <textarea [(ngModel)]="newReview.comment" name="comment" rows="4" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Beküldés</button>
+    </form>
+  </div>
+</section>
